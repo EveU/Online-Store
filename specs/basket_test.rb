@@ -29,4 +29,18 @@ class TestBasket < Minitest::Test
     assert_equal(20.00, @b.subtotal, "Subtotal is not 20.00")
   end
 
+  def test_basket_update_vat_standard
+    @b.scan(@p3)
+    assert_equal(1.80, @b.vat_total, "VAT total is not 1.80")
+  end
+
+  def test_basket_update_vat_reduced
+    @b.scan(@p2)
+    assert_equal(1.70, @b.vat_total, "VAT total is not 1.70")
+  end
+
+  def test_basket_update_vat_zero
+    @b.scan(@p1)
+    assert_equal(0, @b.vat_total, "VAT total is not 0")
+  end
 end
