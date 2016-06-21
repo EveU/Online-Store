@@ -57,4 +57,29 @@ class TestBasket < Minitest::Test
     @b.scan(@p2)
     assert_equal(35.60, @b.total, "Total does not equal 35.60")
   end
+
+  def test_case_1
+    @b.scan(@p1)
+    @b.scan(@p2)
+    @b.scan(@p3)
+    price = @b.total
+    assert_equal(66.40, price, "Total does not equal 66.40")
+  end
+
+  def test_case_2
+    @b.scan(@p2)
+    @b.scan(@p1)
+    @b.scan(@p2)
+    price = @b.total
+    assert_equal(91.19, price, "Total does not equal 91.19")
+  end
+
+  def test_case_3
+    @b.scan(@p3)
+    @b.scan(@p1)
+    @b.scan(@p2)
+    @b.scan(@p3)
+    price = @b.total
+    assert_equal(77.20, price, "Total does not equal 77.20")
+  end
 end

@@ -1,10 +1,14 @@
 class Basket
-  attr_reader :subtotal, :vat_total, :total
+  attr_reader :subtotal, :total
   def initialize
     @items = []
     @subtotal = 0
     @vat_total = 0
     @total = 0
+  end
+
+  def vat_total
+    @vat_total.round(2)
   end
 
   def number_of_items
@@ -22,7 +26,7 @@ class Basket
 
   def update_vat(item)
     rate = self.get_vate_rate(item)
-    vat_amount = (item.price * rate).round(2)
+    vat_amount = (item.price * rate)
     @vat_total += vat_amount
   end
 
@@ -39,6 +43,6 @@ class Basket
   def udpate_total(item)
     self.update_subtotal(item)
     self.update_vat(item)
-    @total = @subtotal + @vat_total
+    @total = @subtotal + vat_total
   end
 end
