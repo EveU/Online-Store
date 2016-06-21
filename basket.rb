@@ -1,9 +1,10 @@
 class Basket
-  attr_reader :subtotal, :vat_total
+  attr_reader :subtotal, :vat_total, :total
   def initialize
     @items = []
     @subtotal = 0
     @vat_total = 0
+    @total = 0
   end
 
   def number_of_items
@@ -12,8 +13,7 @@ class Basket
 
   def scan(item)
     @items << item
-    self.update_subtotal(item)
-    self.update_vat(item)
+    self.udpate_total(item)
   end
 
   def update_subtotal(item)
@@ -34,5 +34,11 @@ class Basket
     elsif item.vat_rate == 'Standard'
       return 0.20
     end
+  end
+
+  def udpate_total(item)
+    self.update_subtotal(item)
+    self.update_vat(item)
+    @total = @subtotal + @vat_total
   end
 end

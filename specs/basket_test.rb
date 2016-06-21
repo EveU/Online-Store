@@ -52,4 +52,9 @@ class TestBasket < Minitest::Test
     assert_equal(62.90, @b.subtotal, "Subtotal does not equal 62.90")
     assert_equal(3.50, @b.vat_total, "VAT total does not equal 3.50")
   end
+
+  def test_calculate_total
+    @b.scan(@p2)
+    assert_equal(35.60, @b.total, "Total does not equal 35.60")
+  end
 end
