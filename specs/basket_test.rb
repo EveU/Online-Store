@@ -43,4 +43,13 @@ class TestBasket < Minitest::Test
     @b.scan(@p1)
     assert_equal(0, @b.vat_total, "VAT total is not 0")
   end
+
+  def test_add_multiple_items
+    @b.scan(@p1)
+    @b.scan(@p2)
+    @b.scan(@p3)
+    assert_equal(3, @b.number_of_items, "Basket does not contain 3 items")
+    assert_equal(62.90, @b.subtotal, "Subtotal does not equal 62.90")
+    assert_equal(3.50, @b.vat_total, "VAT total does not equal 3.50")
+  end
 end
